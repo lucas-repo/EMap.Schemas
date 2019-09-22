@@ -1,4 +1,6 @@
-﻿namespace EMap.OgcStandards.Gml3_2 {
+﻿using System;
+
+namespace EMap.OgcStandards.Gml3_2 {
     
     
     
@@ -12,7 +14,7 @@
         
         private string uomField;
         
-        private double[] textField;
+        private string textField;
         
         
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -27,12 +29,41 @@
         
         
         [System.Xml.Serialization.XmlTextAttribute()]
-        public double[] Text {
-            get {
+        public string Text
+        {
+            get
+            {
                 return this.textField;
             }
-            set {
+            set
+            {
                 this.textField = value;
+            }
+        }
+        public double[] Value
+        {
+            get
+            {
+                double[] value = null;
+                if (!string.IsNullOrEmpty(Text))
+                {
+                    string[] array = Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    value = new double[array.Length];
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        var item = array[i];
+                        if (!double.TryParse(item, out double val))
+                        {
+                            value = null;
+                            break;
+                        }
+                        else
+                        {
+                            value[i] = val;
+                        }
+                    }
+                }
+                return value;
             }
         }
     }
