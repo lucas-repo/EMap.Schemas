@@ -25,6 +25,7 @@
         
         [System.Xml.Serialization.XmlElementAttribute("AbstractGeometry", typeof(AbstractGeometryType))]
         [System.Xml.Serialization.XmlElementAttribute("AbstractTimeObject", typeof(AbstractTimeObjectType))]
+        [System.Xml.Serialization.XmlElementAttribute("RectifiedGrid", typeof(RectifiedGridType))]
         public AbstractGMLType Item {
             get {
                 return this.itemField;
