@@ -10,8 +10,9 @@
     public partial class AbstractDataComponentPropertyType {
         
         private AbstractDataComponentType abstractDataComponentField;
-        
-        
+
+
+        [System.Xml.Serialization.XmlElementAttribute("Quantity", typeof(QuantityType))]
         public AbstractDataComponentType AbstractDataComponent {
             get {
                 return this.abstractDataComponentField;
